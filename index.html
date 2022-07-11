@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image-Carousel</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: rgb(61, 60, 60);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .container {
+        width: 600px;
+        height: 350px;
+        border: 10px solid white;
+        position: relative;
+        border-radius: 50%;
+      }
+      .prev {
+        position: absolute;
+        top: 40%;
+        font-size: 25px;
+        font-weight: bold;
+        color: white;
+        left: 20px;
+      }
+      .next {
+        position: absolute;
+        top: 40%;
+        font-size: 25px;
+        font-weight: bold;
+        color: white;
+        right: 20px;
+      }
+      .nav-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.461);
+        transition: 0.5s;
+        z-index: 10;
+      }
+      .nav-btn:hover {
+        background-color: white;
+        color: black;
+      }
+
+      .carousel-container img {
+        width: 580px;
+        height: 330px;
+        border-radius: 50%;
+      }
+      .item {
+        position: absolute;
+        display: none;
+      }
+      .main {
+        display: block;
+      }
+      .carousel-container {
+        position: relative;
+      }
+      .item .caption {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        height: 35px;
+        border-radius: 50;
+      }
+      h1{
+        margin-bottom: 50px;
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Click-able image carasoel</h1>
+    <div class="container">
+      <div class="navigation">
+        <div class="prev nav-btn">&lt;</div>
+        <div class="next nav-btn">></div>
+
+        <div class="carousel-container">
+          <div class="item main">
+            <a href="https://www.w3schools.com/js/">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKuM5NL2R1pn5ZjhQGGTKl4_y9pP6PPOwQoQ&usqp=CAU" alt="Image-1"/>
+          </a>
+            <div class="caption">Image-1</div>
+          </div>
+
+          <div class="item">
+            <a href="https://www.w3schools.com/python/">
+            <img
+              src="https://media.istockphoto.com/photos/python-programming-language-concept-woman-developer-with-her-hand-picture-id1189210101?b=1&k=20&m=1189210101&s=170667a&w=0&h=JPPA3aVkd2O6csgAvZ1jO9QcS-KlaV25xGslHF1Rr7w=" alt="image-2"/>
+            </a>
+            <div class="caption">Image-2</div>
+          </div>
+
+          <div class="item">
+            <a href="https://www.w3schools.com/REACT/DEFAULT.ASP">
+            <img src="https://www.trio.dev/hubfs/Imported_Blog_Media/React%20Native.webp"
+              alt="Image-3"/>
+            </a>
+            <div class="caption">Image-3</div>
+          </div>
+
+          <div class="item">
+            <a href="https://www.w3schools.com/css/">
+            <img
+              src="https://d1m75rqqgidzqn.cloudfront.net/wp-data/2020/07/03090935/Blog-Info-graphics-1000X700-02.jpg"
+              alt="image-4"
+            />
+          </a>
+            <div class="caption">Image-4</div>
+          </div>
+          <div class="item">
+            <a href="https://www.w3schools.com/c/">
+            <img
+              src="https://cutewallpaper.org/22/c-programming-wallpaper/ternary-operators-in-c-language-dev-community.png"/>
+            </a>
+            <div class="caption">Image-5</div>
+          </div>
+          <div class="item">
+            <a href="https://www.w3schools.com/html/">
+            <img
+              src="https://media.istockphoto.com/photos/web-design-development-and-coding-concept-picture-id1219854221?b=1&k=20&m=1219854221&s=170667a&w=0&h=wl3J-ScOcNohyXiXvPTK9FEnUyUS52VfXq7jcI1MECk="
+              alt=""
+            />
+          </a>
+            <div class="caption">Image-6</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var prev = document.querySelector(".prev");
+      var next = document.querySelector(".next");
+      var images = document.querySelector(".carousel-container").children;
+      totalImages = images.length;
+
+      var index = 0;
+      prev.addEventListener("click", () => {
+        nextImage("prev");
+      });
+
+      next.addEventListener("click", () => {
+        nextImage("next");
+      });
+      function nextImage(direction) {
+        if (direction == "next") {
+          index++;
+          if (index == totalImages) {
+            index = 0;
+          }
+        } else {
+          if (index == 0) {
+            index = totalImages - 1;
+          } else {
+            index--;
+          }
+        }
+
+        for (let i = 0; i < totalImages; i++) {
+          images[i].classList.remove("main");
+        }
+        images[index].classList.add("main");
+      }
+    </script>
+  </body>
+</html>
